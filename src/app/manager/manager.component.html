@@ -1,0 +1,21 @@
+<div>
+  <div class="page-header">
+    <h1>
+      <small>פשוט להיות </small> ביח"ד
+    </h1>
+  </div>
+  <div class="row">
+    <div class="col-sm-2">
+      <div class="list-group">
+        <button type="button" class="list-group-item list-group-item-action active" [routerLink]="['/status']" click="console.log('clicked')">
+              חדר מצב
+            </button>
+        <button type="button " class="list-group-item list-group-item-action " [routerLink]="[ '/buylist']">רשימת קניות</button>
+        <button type="button " class="list-group-item list-group-item-action " disabled>הגדרות שבת</button>
+      </div>
+    </div>
+    <div class="card " style="width: 70rem; ">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

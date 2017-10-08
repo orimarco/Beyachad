@@ -1,0 +1,219 @@
+<div>
+    <div class="page-header">
+        <h1>
+            <small>פשוט להירשם </small> ביח"ד
+        </h1>
+    </div>
+    <div class="row form-group">
+        <div class="col-md-6 col-sm-offset-3 ">
+            <ul class="nav nav-pills setup-panel nav-fill rounded border">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#step-1">פרטים</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#step-2">תפקיד</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link disabled" href="#step-3">מצרכים</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="setup-content active col-md-6 col-sm-offset-3 rounded border" id="step-1">
+        <form [formGroup]="registration" (ngSubmit)="submit1($event)">
+            <legend> פרטים</legend>
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">שם</label>
+                <div class="col-6">
+                    <input class="form-control" formControlName="name" type="text" placeholder="ישראל ישראלי" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">מייל</label>
+                <div class="col-6">
+                    <input class="form-control" formControlName="email" type="email" placeholder="israel@israeli.com" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">פלאפון</label>
+                <div class="col-6">
+                    <input class="form-control" formControlName="phone" type="tel" placeholder="" required>
+                </div>
+            </div>
+            <fieldset class="form-group">
+                <legend>מגיע ל...</legend>
+                <div class="form-check col-md-offset-2">
+                    <label class="form-check-label">
+                    <input type="radio" class="form-check-input" formControlName="meals" value="both" required>
+                        שתי הסעודות
+                    </label>
+                </div>
+                <div class="form-check col-md-offset-2">
+                    <label class="form-check-label ">
+                    <input type="radio" class="form-check-input" formControlName="meals" value="evening" >
+                        ערב שבת
+                    </label>
+                </div>
+                <div class="form-check col-md-offset-2">
+                    <label class="form-check-label">
+                    <input type="radio" class="form-check-input" formControlName="meals" value="morning">
+                        בוקר שבת
+                    </label>
+                </div>
+            </fieldset>
+            <button type="submit" [disabled]="form1invalid()" class="btn btn-primary col-md-offset-5 col-sm-offset-5">המשך</button>
+        </form>
+    </div>
+
+    <div class="setup-content col-md-6 col-xs-offset-3 rounded border" id="step-2">
+        <form [formGroup]="registration" (ngSubmit)="submit2($event)">
+            <fieldset class="form-group">
+                <legend>אני רוצה...</legend>
+                <div class="form-check col-xs-offset-2">
+                    <label class="form-check-label ">
+                    <input type="radio" class="form-check-input" formControlName="roleType" value="cook">
+                        לבשל
+                    </label>
+                </div>
+                <div class="form-check col-xs-offset-2">
+                    <label class="form-check-label">
+                    <input type="radio" class="form-check-input" formControlName="roleType" value="shopping" checked>
+                        לעזור בקניות
+                    </label>
+                </div>
+                <div class="form-check col-xs-offset-2">
+                    <label class="form-check-label">
+                    <input type="radio" class="form-check-input" formControlName="roleType" value="other">
+                        אחר
+                    </label>
+                </div>
+            </fieldset>
+            <fieldset *ngIf="registration.value.roleType == 'shopping'" class="form-group">
+                <legend>ובפרט</legend>
+                <div class="form-check col-xs-offset-2">
+                    <label class="form-check-label">
+                    <input type="radio" class="form-check-input" formControlName="shoppingRole" value="shopping">
+                        לבצע קניות (חמישי צהריים)
+                    </label>
+                </div>
+                <div *ngIf="registration.value.shoppingRole == 'shopping'" class="form-check col-xs-offset-3">
+                    <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" formControlName="hasCar" value="true">
+                        יש רכב? 
+                    </label>
+                </div>
+                <div class="form-check col-xs-offset-2">
+                    <label class="form-check-label ">
+                    <input type="radio" class="form-check-input" formControlName="shoppingRole" value="shoppingSorting">
+                        לחלק קניות לשקיות (חמישי ערב)
+                    </label>
+                </div>
+            </fieldset>
+
+            <fieldset *ngIf="registration.value.roleType == 'cook'" class="form-group">
+                <legend>ובפרט</legend>
+                <div class="form-check col-xs-offset-2">
+                    <label class="form-check-label">
+                    <input type="radio" class="form-check-input" formControlName="cookRole" value="mainCourse">
+                        עיקרית
+                    </label>
+                </div>
+                <div class="form-check col-xs-offset-2">
+                    <label class="form-check-label ">
+                    <input type="radio" class="form-check-input" formControlName="cookRole" value="sideDish">
+                        תוספת
+                    </label>
+                </div>
+                <div class="form-check col-xs-offset-2">
+                    <label class="form-check-label ">
+                    <input type="radio" class="form-check-input" formControlName="cookRole" value="soup">
+                        מרק (ערב)
+                    </label>
+                </div>
+                <div class="form-check col-xs-offset-2">
+                    <label class="form-check-label ">
+                    <input type="radio" class="form-check-input" formControlName="cookRole" value="dessert">
+                        קינוח
+                    </label>
+                </div>
+            </fieldset>
+
+            <fieldset *ngIf="registration.value.roleType == 'other'" class="form-group">
+                <legend>ובפרט</legend>
+                <div class="form-check col-xs-offset-2">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" formControlName="otherRole" value="setting">
+                            סידור בית מדרש (שישי בוקר)
+                        </label>
+                </div>
+                <div class="form-check col-xs-offset-2">
+                    <label class="form-check-label ">
+                        <input type="radio" class="form-check-input" formControlName="otherRole" value="dishWashing">
+                            שטיפת כלים
+                        </label>
+                </div>
+            </fieldset>
+
+            <fieldset *ngIf="(registration.value.roleType == 'cook' && registration.value.cookRole != 'soup') || (registration.value.roleType == 'other' && registration.value.otherRole == 'dishWashing')"
+                class="form-group">
+                <legend>למתי?</legend>
+                <div class="form-check col-xs-offset-2">
+                    <label class="form-check-label">
+                    <input type="radio" class="form-check-input" formControlName="roleTime" value="evening">
+                        ערב
+                    </label>
+                </div>
+                <div class="form-check col-xs-offset-2">
+                    <label class="form-check-label ">
+                    <input type="radio" class="form-check-input" formControlName="roleTime" value="morning">
+                        בוקר
+                    </label>
+                </div>
+            </fieldset>
+            <button type="submit" [disabled]="form2invalid()" class="btn btn-primary col-md-offset-5 col-sm-offset-5">המשך</button>
+        </form>
+
+    </div>
+
+    <div class="setup-content col-md-6 col-xs-offset-3 rounded border" id="step-3">
+        <form [formGroup]="registration" (ngSubmit)="submit3($event)">
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">שם המנה</label>
+                <div class="col-6">
+                    <input class="form-control" formControlName="courseName" type="text" placeholder="ערמונים מקורמלים" required>
+                </div>
+            </div>
+            <table class="table table-bordered table-hover" id="tab_logic">
+                <thead>
+                    <tr>
+                        <th class="text-center">
+                            #
+                        </th>
+                        <th class="text-center">
+                            מצרך
+                        </th>
+                        <th class="text-center">
+                            כמות
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id='addr0'>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            <input type="text" name='name0' placeholder='Name' class="form-control" />
+                        </td>
+                        <td>
+                            <input type="text" name='sur0' placeholder='Surname' class="form-control" />
+                        </td>
+                    </tr>
+                    <tr id='addr1'></tr>
+                    <a id="add_row" class="btn btn-success pull-left">הוסף</a>
+                </tbody>
+            </table>
+            <button type="submit" [disabled]="form3invalid()" class="btn btn-success col-md-offset-5 col-sm-offset-5">הירשם!</button>
+        </form>
+    </div>
+</div>
