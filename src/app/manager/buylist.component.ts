@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'app-root',
+    selector: 'buylist',
     templateUrl: 'buylist.component.html',
 })
-export class ManagerBuylist {
+export class ManagerBuylistComponent {
 }

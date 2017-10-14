@@ -1,21 +1,39 @@
 <div>
   <div class="page-header">
     <h1>
-      <small>פשוט להיות </small> ביח"ד
+      <small>פשוט לנהל </small> ביח"ד
     </h1>
   </div>
+
   <div class="row">
-    <div class="col-sm-2">
-      <div class="list-group">
-        <button type="button" class="list-group-item list-group-item-action active" [routerLink]="['/status']" click="console.log('clicked')">
-              חדר מצב
-            </button>
-        <button type="button " class="list-group-item list-group-item-action " [routerLink]="[ '/buylist']">רשימת קניות</button>
-        <button type="button " class="list-group-item list-group-item-action " disabled>הגדרות שבת</button>
-      </div>
+      <!-- <tabset [vertical]="true" type="pills">
+          <tab heading="Vertical 1">Vertical content 1</tab>
+          <tab heading="Vertical 2">Vertical content 2</tab>
+        </tabset> -->
+    <ngb-tabset type="pills" orientation="vertical" class="col-2">
+      <ngb-tab title="סטטוס שבת" id="status" href="#status" class="active">
+        <ng-template ngbTabContent>
+           </ng-template>
+      </ngb-tab>
+      <ngb-tab id="buylist" href="#buylist">
+        <ng-template ngbTabTitle>רשימת קניות</ng-template>
+        <ng-template ngbTabContent>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Disabled" [disabled]="true">
+        <ng-template ngbTabContent>
+          </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+
+    <div class="container col-md-9 tab-content active" id="status-content">
+        <status></status>
+    </div> 
+
+    <div class="container col-md-9 tab-content" id="buylist-content">
+      <buylist></buylist>
     </div>
-    <div class="card " style="width: 70rem; ">
-      <router-outlet></router-outlet>
-    </div>
+
   </div>
 </div>
+

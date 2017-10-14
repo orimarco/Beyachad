@@ -19,15 +19,16 @@
       "prefix": "app",
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",
+        "./lib/bootstrap3-typeahead.min.js",
         "app/utils.ts"
       ],
       "styles": [
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
-        "../node_modules/bootstrap/dist/css/bootstrap.rtl.min.css",
+        "../node_modules/bootstrap-rtl/dist/css/bootstrap-rtl.min.css",
         "styles.css"
       ],
+      "environmentSource": "environments/environment.ts",
       "environments": {
-        "source": "environments/environment.ts",
         "dev": "environments/environment.ts",
         "prod": "environments/environment.prod.ts"
       }

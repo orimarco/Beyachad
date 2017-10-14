@@ -4,8 +4,9 @@
             <small>פשוט להירשם </small> ביח"ד
         </h1>
     </div>
+
     <div class="row form-group">
-        <div class="col-md-6 col-sm-offset-3 ">
+        <div class="col-md-6 col-xs-8 col-md-offset-3 col-xs-offset-2 ">
             <ul class="nav nav-pills setup-panel nav-fill rounded border">
                 <li class="nav-item">
                     <a class="nav-link active" href="#step-1">פרטים</a>
@@ -19,7 +20,7 @@
             </ul>
         </div>
     </div>
-    <div class="setup-content active col-md-6 col-sm-offset-3 rounded border" id="step-1">
+    <div class="setup-content col-md-6 col-xs-8 col-md-offset-3 col-xs-offset-2 rounded border active" id="step-1">
         <form [formGroup]="registration" (ngSubmit)="submit1($event)">
             <legend> פרטים</legend>
             <div class="form-group row">
@@ -174,45 +175,34 @@
         </form>
 
     </div>
-
     <div class="setup-content col-md-6 col-xs-offset-3 rounded border" id="step-3">
         <form [formGroup]="registration" (ngSubmit)="submit3($event)">
             <div class="form-group row">
                 <label class="col-md-2 col-form-label">שם המנה</label>
                 <div class="col-6">
-                    <input class="form-control" formControlName="courseName" type="text" placeholder="ערמונים מקורמלים" required>
+                    <input class="form-control" formControlName="courseName" type="text" placeholder="ערמונים מקורמלים">
                 </div>
             </div>
-            <table class="table table-bordered table-hover" id="tab_logic">
-                <thead>
-                    <tr>
-                        <th class="text-center">
-                            #
-                        </th>
-                        <th class="text-center">
-                            מצרך
-                        </th>
-                        <th class="text-center">
-                            כמות
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr id='addr0'>
-                        <td>
-                            1
-                        </td>
-                        <td>
-                            <input type="text" name='name0' placeholder='Name' class="form-control" />
-                        </td>
-                        <td>
-                            <input type="text" name='sur0' placeholder='Surname' class="form-control" />
-                        </td>
-                    </tr>
-                    <tr id='addr1'></tr>
-                    <a id="add_row" class="btn btn-success pull-left">הוסף</a>
-                </tbody>
-            </table>
+
+            <div class="row">
+                <div class="col-md-5 col-xs-3">
+                    <input ng2-auto-complete id="ng2-auto-complete" [source]="ingredients" [list-formatter]="autocompleListFormatter" value-property-name="name" display-property-name="name"
+                        placeholder="בחר מצרך" class="form-control" [formControl]="selectedIngredient" no-match-found-text="המוצר אינו קיים במערכת">
+                </div>
+                <div class="col-md-3 col-xs-2">
+                    <input id="unitsInput" type="number" name='unit' [placeholder]="this.selectedIngredient.value && this.selectedIngredient.value['unit'] ? this.selectedIngredient.value['unit'] : ''" class="form-control" [formControl]="selectedQuantity"
+                    />
+                </div>
+                <button type="button" id="addIngredient" class="btn btn-primary">
+                    צרוך
+                </button>
+            </div>
+            <div class="row" *ngFor="let i of this.selectedIngredients">
+                <div class="chip">
+                    {{i.quantity}} {{i.unit}} {{i.name}}
+                    <span class="closebtn" id="btn-{{i.id}}">&times;</span>
+                </div>
+            </div>
             <button type="submit" [disabled]="form3invalid()" class="btn btn-success col-md-offset-5 col-sm-offset-5">הירשם!</button>
         </form>
     </div>
